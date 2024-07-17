@@ -1,6 +1,7 @@
 package be03.borok_szabolcs.Logic;
 
 import java.util.Random;
+import be03.borok_szabolcs.UI.input;
 
 public class simulationLogic {
 
@@ -48,12 +49,17 @@ public class simulationLogic {
         Integer wheat = null;
         System.out.println("Add meg az elvetett buza mennyiseget tonnaban!");
         try {
-            String input = userInput();
-            wheat = Integer.parseInt(userInput);
+            String inputStr = input.userInput();  // Call the static method correctly
+            wheat = Integer.parseInt(inputStr);
         } catch (Exception e) {
             System.out.println("Egesz szamot pls.");
         }
         
+        if (wheat != null) {
+            Integer hozam = milyenHozamVarhato(wheat);
+            System.out.println("A várható hozam " + hozam + " tonna.");
+            milyenEvVarhato(wheat);
+        }
     }
 
 }

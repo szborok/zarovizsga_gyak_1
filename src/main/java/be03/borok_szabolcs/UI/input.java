@@ -10,7 +10,7 @@ public class input {
         
         input = myScanner.nextLine();
 
-        myScanner.close();
+
         return input;
     }
 
