@@ -15,20 +15,20 @@ public class simulationLogic {
         return rnd.nextInt(5,16) * buza;
     }
 
-    public static void milyenEvVarhato(Integer buza) {
+    public static String milyenEvVarhato(Integer buza) {
         //3. Írjon egy újabb függvényt „milyenEvVarhato” néven, amely a várható hozam és az elvetett búza alapján 
         //visszaadja, hogy milyen év („átlag alatti”, „átlagos” vagy „átlag feletti” a 2. feladatban megfogalmazottak 
         //alapján) várható. A vizsgálatokat a függvény törzsében valósítsa meg a bemeneti paraméterek hányadosa alapján. 
         Integer hozam = milyenHozamVarhato(buza);
 
         if (hozam < 9) {
-            System.out.println("átlag alatti");
+            return "átlag alatti";
         }
         else if (hozam > 12) {
-            System.out.println("átlag feletti");
+            return "átlag feletti";
         }
         else {
-            System.out.println("átlagos");
+            return "átlagos";
         }
     }
 
@@ -46,20 +46,24 @@ public class simulationLogic {
         //A hozam alapján átlag alatti év várható. 
         //Add meg az elvetett búza mennyiségét tonnában! 
 
-        Integer wheat = null;
+        Integer wheat = 0;
+        String inputStr = null;
+
         System.out.println("Add meg az elvetett buza mennyiseget tonnaban!");
-        try {
-            String inputStr = input.userInput();  // Call the static method correctly
-            wheat = Integer.parseInt(inputStr);
-        } catch (Exception e) {
-            System.out.println("Egesz szamot pls.");
+
+        while (wheat < 1) {
+            
+            try {
+                inputStr = input.userInput();
+                wheat = Integer.parseInt(inputStr);
+            } catch (Exception e) {
+                System.out.println("Egesz szamot pls.");
+            }
         }
         
-        if (wheat != null) {
-            Integer hozam = milyenHozamVarhato(wheat);
-            System.out.println("A várható hozam " + hozam + " tonna.");
-            milyenEvVarhato(wheat);
-        }
+        Integer hozam = milyenHozamVarhato(wheat);
+        System.out.println("A várható hozam " + hozam + " tonna.");
+        System.out.println("A hozam alapján" + milyenEvVarhato(wheat) + " év várható.");
     }
 
 }
