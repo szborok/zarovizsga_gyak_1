@@ -16,6 +16,7 @@ public class input {
 
     public static void askForUserInputWhileNull() {
         String answer = null;
+        Integer wheat = null;
 
         while (answer != "") {
             System.out.println("Add meg az elvetett buza mennyiseget tonnaban!");
